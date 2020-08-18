@@ -12,13 +12,37 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var homeTabNavigationController : UINavigationController!
+    var profileTabNavigationController : UINavigationController!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
+        
+        let tabBarController = UITabBarController()
+        
+        homeTabNavigationController = UINavigationController.init(rootViewController: HomeViewController())
+        profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
+        
+        tabBarController.viewControllers = [homeTabNavigationController, profileTabNavigationController]
+        
+        tabBarController.tabBar.barTintColor = .white
+        tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBarController.tabBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        tabBarController.tabBar.layer.shadowRadius = 5
+        tabBarController.tabBar.layer.shadowOpacity = 0.8
+        tabBarController.tabBar.layer.masksToBounds = false
+        
+        let item1 = UITabBarItem(title: "", image: UIImage(named: "home-white"), selectedImage: UIImage(named: "home-black"))
+        let item2 = UITabBarItem(title: "", image: UIImage(named: "user-white"), selectedImage: UIImage(named: "user-black"))
+        
+        homeTabNavigationController.tabBarItem = item1
+        profileTabNavigationController.tabBarItem = item2
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = HomeViewController()
+            window.rootViewController = tabBarController
             self.window = window
             window.makeKeyAndVisible()
         }

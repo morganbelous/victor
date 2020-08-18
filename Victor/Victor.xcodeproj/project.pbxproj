@@ -13,6 +13,7 @@
 		63054F7124EB79C1003533AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63054F7024EB79C1003533AB /* Preview Assets.xcassets */; };
 		63054F7424EB79C1003533AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63054F7224EB79C1003533AB /* LaunchScreen.storyboard */; };
 		63B938BC24EB7E59009432E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BB24EB7E59009432E7 /* HomeViewController.swift */; };
+		63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		63054F7324EB79C1003533AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63054F7524EB79C1003533AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63B938BB24EB7E59009432E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				63054F6724EB79BE003533AB /* AppDelegate.swift */,
 				63054F6924EB79BE003533AB /* SceneDelegate.swift */,
+				63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */,
 				63B938BB24EB7E59009432E7 /* HomeViewController.swift */,
 				63054F6D24EB79C1003533AB /* Assets.xcassets */,
 				63054F7224EB79C1003533AB /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			files = (
 				63054F6824EB79BE003533AB /* AppDelegate.swift in Sources */,
 				63054F6A24EB79BE003533AB /* SceneDelegate.swift in Sources */,
+				63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */,
 				63B938BC24EB7E59009432E7 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
