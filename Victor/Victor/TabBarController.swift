@@ -17,12 +17,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var notificationsTabNavigationController : UINavigationController!
     var profileTabNavigationController : UINavigationController!
     
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        let index = viewControllers?.firstIndex(of: viewController)
-        print(index)
-        return true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,20 +44,42 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         viewControllers = [homeTabNavigationController, searchTabNavigationController, uploadTabNavigationController, notificationsTabNavigationController, profileTabNavigationController]
         
-        let item1 = UITabBarItem(title: "", image: UIImage(named: "home-white"), selectedImage: UIImage(named: "home-black"))
-        let item2 = UITabBarItem(title: "", image: UIImage(named: "search"), selectedImage: UIImage(named: "search-filled"))
-        let item3 = UITabBarItem(title: "", image: UIImage(named: "upload"), selectedImage: UIImage(named: "upload-filled"))
-        let item4 = UITabBarItem(title: "", image: UIImage(named: "bell"), selectedImage: UIImage(named: "bell-filled"))
-         let item5 = UITabBarItem(title: "", image: UIImage(named: "user-white"), selectedImage: UIImage(named: "user-black"))
+        let item0 = UITabBarItem(title: "", image: UIImage(named: "home-white"), tag: 0)
+        item0.selectedImage = UIImage(named: "home-black")
         
-        homeTabNavigationController.tabBarItem = item1
-        searchTabNavigationController.tabBarItem = item2
-        uploadTabNavigationController.tabBarItem = item3
-        notificationsTabNavigationController.tabBarItem = item4
-        profileTabNavigationController.tabBarItem = item5
+        let item1 = UITabBarItem(title: "", image: UIImage(named: "search"), tag: 1)
+        item1.selectedImage = UIImage(named: "search-filled")
+        
+        let item2 = UITabBarItem(title: "", image: UIImage(named: "upload"), tag: 2)
+        item2.selectedImage = UIImage(named: "upload-filled")
+        
+        let item3 = UITabBarItem(title: "", image: UIImage(named: "bell"), tag: 3)
+        item3.selectedImage = UIImage(named: "bell-filled")
+        
+        let item4 = UITabBarItem(title: "", image: UIImage(named: "user-white"), tag: 4)
+        item4.selectedImage = UIImage(named: "user-black")
+        
+        homeTabNavigationController.tabBarItem = item0
+        searchTabNavigationController.tabBarItem = item1
+        uploadTabNavigationController.tabBarItem = item2
+        notificationsTabNavigationController.tabBarItem = item3
+        profileTabNavigationController.tabBarItem = item4
         
     }
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        
+        if index == 2 {
+         let vc =  UploadViewController()
+         vc.modalPresentationStyle = .overFullScreen
+         self.present(vc, animated: true, completion: nil)
+         return false
+        }
+      return true
+    }
     
+
     
+
 }
