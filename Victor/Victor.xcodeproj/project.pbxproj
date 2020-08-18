@@ -12,6 +12,9 @@
 		63054F6E24EB79C1003533AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63054F6D24EB79C1003533AB /* Assets.xcassets */; };
 		63054F7124EB79C1003533AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63054F7024EB79C1003533AB /* Preview Assets.xcassets */; };
 		63054F7424EB79C1003533AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63054F7224EB79C1003533AB /* LaunchScreen.storyboard */; };
+		6332673324EC42A9000FBCB8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332673224EC42A9000FBCB8 /* SearchViewController.swift */; };
+		6332673524EC465A000FBCB8 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332673424EC465A000FBCB8 /* NotificationsViewController.swift */; };
+		6332673724EC78DC000FBCB8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6332673624EC78DC000FBCB8 /* TabBarController.swift */; };
 		63B938BC24EB7E59009432E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BB24EB7E59009432E7 /* HomeViewController.swift */; };
 		63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +27,9 @@
 		63054F7024EB79C1003533AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63054F7324EB79C1003533AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63054F7524EB79C1003533AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6332673224EC42A9000FBCB8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6332673424EC465A000FBCB8 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		6332673624EC78DC000FBCB8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		63B938BB24EB7E59009432E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,9 +66,12 @@
 			children = (
 				63054F6724EB79BE003533AB /* AppDelegate.swift */,
 				63054F6924EB79BE003533AB /* SceneDelegate.swift */,
+				6332673624EC78DC000FBCB8 /* TabBarController.swift */,
 				63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */,
+				6332673224EC42A9000FBCB8 /* SearchViewController.swift */,
 				63B938BB24EB7E59009432E7 /* HomeViewController.swift */,
 				63054F6D24EB79C1003533AB /* Assets.xcassets */,
+				6332673424EC465A000FBCB8 /* NotificationsViewController.swift */,
 				63054F7224EB79C1003533AB /* LaunchScreen.storyboard */,
 				63054F7524EB79C1003533AB /* Info.plist */,
 				63054F6F24EB79C1003533AB /* Preview Content */,
@@ -149,8 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6332673324EC42A9000FBCB8 /* SearchViewController.swift in Sources */,
 				63054F6824EB79BE003533AB /* AppDelegate.swift in Sources */,
 				63054F6A24EB79BE003533AB /* SceneDelegate.swift in Sources */,
+				6332673524EC465A000FBCB8 /* NotificationsViewController.swift in Sources */,
+				6332673724EC78DC000FBCB8 /* TabBarController.swift in Sources */,
 				63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */,
 				63B938BC24EB7E59009432E7 /* HomeViewController.swift in Sources */,
 			);
