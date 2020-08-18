@@ -9,15 +9,24 @@
 import Foundation
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var homeTabNavigationController : UINavigationController!
-    var profileTabNavigationController : UINavigationController!
     var searchTabNavigationController : UINavigationController!
+    var uploadTabNavigationController: UINavigationController!
     var notificationsTabNavigationController : UINavigationController!
+    var profileTabNavigationController : UINavigationController!
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        print(index)
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.delegate = self
         
         tabBar.barTintColor = .white
         tabBar.isTranslucent = false
@@ -35,20 +44,23 @@ class TabBarController: UITabBarController {
         
         homeTabNavigationController = UINavigationController.init(rootViewController: HomeViewController())
         searchTabNavigationController = UINavigationController.init(rootViewController: SearchViewController())
+        uploadTabNavigationController = UINavigationController.init(rootViewController: UploadViewController())
         notificationsTabNavigationController = UINavigationController.init(rootViewController: NotificationsViewController())
         profileTabNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
         
-        viewControllers = [homeTabNavigationController, searchTabNavigationController, notificationsTabNavigationController, profileTabNavigationController]
+        viewControllers = [homeTabNavigationController, searchTabNavigationController, uploadTabNavigationController, notificationsTabNavigationController, profileTabNavigationController]
         
         let item1 = UITabBarItem(title: "", image: UIImage(named: "home-white"), selectedImage: UIImage(named: "home-black"))
         let item2 = UITabBarItem(title: "", image: UIImage(named: "search"), selectedImage: UIImage(named: "search-filled"))
-        let item3 = UITabBarItem(title: "", image: UIImage(named: "bell"), selectedImage: UIImage(named: "bell-filled"))
-         let item4 = UITabBarItem(title: "", image: UIImage(named: "user-white"), selectedImage: UIImage(named: "user-black"))
+        let item3 = UITabBarItem(title: "", image: UIImage(named: "upload"), selectedImage: UIImage(named: "upload-filled"))
+        let item4 = UITabBarItem(title: "", image: UIImage(named: "bell"), selectedImage: UIImage(named: "bell-filled"))
+         let item5 = UITabBarItem(title: "", image: UIImage(named: "user-white"), selectedImage: UIImage(named: "user-black"))
         
         homeTabNavigationController.tabBarItem = item1
         searchTabNavigationController.tabBarItem = item2
-        notificationsTabNavigationController.tabBarItem = item3
-        profileTabNavigationController.tabBarItem = item4
+        uploadTabNavigationController.tabBarItem = item3
+        notificationsTabNavigationController.tabBarItem = item4
+        profileTabNavigationController.tabBarItem = item5
         
     }
     
