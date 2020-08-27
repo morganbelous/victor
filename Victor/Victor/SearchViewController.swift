@@ -80,7 +80,7 @@ class SearchViewController: UIViewController {
         // MAKE SURE THIS WORKS WITH SEARCHING??
         if let indexPath = self.searchCollectionView.indexPathsForSelectedItems?.first{
             let prof = isSearching ? filteredProfs[indexPath.row] : profs[indexPath.row]
-            let detailsViewController = ProfDetailsViewController()
+            let detailsViewController = ProfDetailsViewController(profName: prof.name, profUsername: prof.username, profBio: prof.bio, profProfileImageName: prof.profileImageName)
             navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }
