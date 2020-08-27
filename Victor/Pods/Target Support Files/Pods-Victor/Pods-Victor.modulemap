@@ -1,0 +1,6 @@
+framework module Pods_Victor {
+  umbrella header "Pods-Victor-umbrella.h"
+
+  export *
+  module * { export * }
+}

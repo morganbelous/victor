@@ -14,10 +14,5 @@ class ProfDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .green
-
-        
     }
-    
-
-
 }

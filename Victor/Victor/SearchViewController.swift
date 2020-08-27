@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SearchViewController: UIViewController {
     
@@ -36,7 +37,6 @@ class SearchViewController: UIViewController {
         filteredProfs = profs
         
         searchBar = UISearchBar()
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.backgroundImage = UIImage()
         searchBar.placeholder = "Search"
         let searchBarText = searchBar.value(forKey: "searchField") as? UITextField
@@ -52,7 +52,6 @@ class SearchViewController: UIViewController {
         searchCollectionView.dataSource = self
         searchCollectionView.delegate = self
         searchCollectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: profCellReuseIdentifier)
-        searchCollectionView.translatesAutoresizingMaskIntoConstraints = false
         searchCollectionView.backgroundColor = .white
 //        searchCollectionView.layer.cornerRadius = 50.0
 //        searchCollectionView.layer.borderWidth = 1.0
@@ -64,20 +63,17 @@ class SearchViewController: UIViewController {
     }
     
     func setupConstraints(){
-
-        NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: sidePadding),
-            searchBar.heightAnchor.constraint(equalToConstant: 40),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -sidePadding)
-        ])
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
+            make.left.equalTo(view).offset(sidePadding)
+            make.right.equalTo(view).offset(-sidePadding)
+            make.height.equalTo(40)
+        }
         
-        NSLayoutConstraint.activate([
-            searchCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: headerPadding),
-            searchCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            searchCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        searchCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(headerPadding)
+            make.bottom.left.right.equalTo(view)
+        }
     }
     
     @objc func pushProfDetailsViewController(){

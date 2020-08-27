@@ -27,11 +27,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
         
         bioLabel = UILabel()
-        bioLabel.translatesAutoresizingMaskIntoConstraints = false
         bioLabel.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(bioLabel)
         
@@ -39,7 +37,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .blue
         imageView.image = UIImage(named: "man")
         contentView.addSubview(imageView)
@@ -52,23 +49,21 @@ class SearchCollectionViewCell: UICollectionViewCell {
     }
     
     func setupConstraints() {
+        imageView.snp.makeConstraints { make in
+            make.top.left.equalTo(contentView).offset(imagePadding)
+            make.bottom.equalTo(contentView).offset(-imagePadding)
+            make.width.equalTo(contentView.frame.width * 0.2)
+        }
         
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imagePadding),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: imagePadding),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -imagePadding),
-            imageView.widthAnchor.constraint(equalToConstant: contentView.frame.width * 0.2)
-        ])
+        nameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView).offset(-textPadding)
+            make.left.equalTo(imageView.snp.right).offset(textPadding)
+        }
         
-        NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -textPadding),
-            nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: textPadding)
-        ])
-        
-        NSLayoutConstraint.activate([
-            bioLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: textPadding),
-            bioLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: textPadding)
-        ])
+        bioLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView).offset(textPadding)
+            make.left.equalTo(imageView.snp.right).offset(textPadding)
+        }
     }
     
     func configure(for prof: Professional){

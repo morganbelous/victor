@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class UploadViewController: UIViewController {
     
@@ -21,7 +22,6 @@ class UploadViewController: UIViewController {
         button.setTitle("dismiss", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         view.addSubview(button)
         
@@ -29,12 +29,11 @@ class UploadViewController: UIViewController {
     }
     
     func setupConstraints(){
-        NSLayoutConstraint.activate([
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.widthAnchor.constraint(equalToConstant: 100),
-            button.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        button.snp.makeConstraints { make in
+            make.center.equalTo(view)
+            make.width.equalTo(100)
+            make.height.equalTo(50)
+        }
     }
     
     @objc func dismissVC(){
