@@ -71,9 +71,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(for user: User){
-        nameLabel.text = user.name
-        bioLabel.text = user.bio
-        imageView.image = UIImage(named: user.profileImageName)
+    func configure(for prof: Professional){
+        nameLabel.text = prof.name
+        bioLabel.text = prof.bio
+        imageView.image = UIImage(named: prof.profileImageName)
     }
 }

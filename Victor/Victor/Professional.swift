@@ -1,14 +1,14 @@
 //
-//  User.swift
+//  Professional.swift
 //  Victor
 //
-//  Created by Morgan Belous on 8/19/20.
+//  Created by Morgan Belous on 8/27/20.
 //  Copyright © 2020 Morgan Belous. All rights reserved.
 //
 
 import Foundation
 
-struct User {
+struct Professional {
     var name: String
     var username: String
     var bio: String
@@ -16,5 +16,7 @@ struct User {
 //    var email: String
 //    var password: String
 //    var birthday: String
-//    var following: [User]
+//    var following: [User] ??
+//    var followers: [User] ??
+//    var posts: [String]
 }

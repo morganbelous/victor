@@ -11,13 +11,13 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var searchCollectionView: UICollectionView!
-    let userCellReuseIdentifier = "userCellReuseIdentifier"
+    let profCellReuseIdentifier = "profCellReuseIdentifier"
     
     var searchBar: UISearchBar!
     var isSearching: Bool! = false
     
-    var users: [User] = []
-    var filteredUsers: [User] = []
+    var profs: [Professional] = []
+    var filteredProfs: [Professional] = []
     
     var headerPadding: CGFloat! = 75
     let sidePadding: CGFloat = 8
@@ -28,12 +28,12 @@ class SearchViewController: UIViewController {
 
         view.backgroundColor = UIColor(red: 123/255, green: 160/255, blue: 167/255, alpha: 1.0)
     
-        let jack = User(name: "Jack", username: "jack123", bio: "I'm jack", profileImageName: "man")
-        let morgan = User(name: "Morgan", username: "morgan326", bio: "I'm morgan", profileImageName: "woman")
-        let sam = User(name: "Sam", username: "sam125", bio: "I'm sam", profileImageName: "woman")
+        let jack = Professional(name: "Jack", username: "jack123", bio: "I'm a soccer player", profileImageName: "man")
+        let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman")
+        let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2")
         
-        users = [jack, morgan, sam, jack, morgan, sam]
-        filteredUsers = users
+        profs = [jack, morgan, sam, jack, morgan, sam]
+        filteredProfs = profs
         
         searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
         searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         searchCollectionView.dataSource = self
         searchCollectionView.delegate = self
-        searchCollectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: userCellReuseIdentifier)
+        searchCollectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: profCellReuseIdentifier)
         searchCollectionView.translatesAutoresizingMaskIntoConstraints = false
         searchCollectionView.backgroundColor = .white
 //        searchCollectionView.layer.cornerRadius = 50.0
@@ -79,6 +79,15 @@ class SearchViewController: UIViewController {
             searchCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    @objc func pushProfDetailsViewController(){
+        // MAKE SURE THIS WORKS WITH SEARCHING??
+        if let indexPath = self.searchCollectionView.indexPathsForSelectedItems?.first{
+            let prof = isSearching ? filteredProfs[indexPath.row] : profs[indexPath.row]
+            let detailsViewController = ProfDetailsViewController()
+            navigationController?.pushViewController(detailsViewController, animated: true)
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate{
@@ -99,11 +108,11 @@ extension SearchViewController: UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredUsers.removeAll(keepingCapacity: false)
+        filteredProfs.removeAll(keepingCapacity: false)
         let predicateString = searchBar.text!
-        filteredUsers = users.filter({$0.name.range(of: predicateString, options: .caseInsensitive) != nil})
-        filteredUsers.sort{$0.name < $1.name}
-        isSearching = (filteredUsers.count == 0) ? false: true
+        filteredProfs = profs.filter({$0.name.range(of: predicateString, options: .caseInsensitive) != nil})
+        filteredProfs.sort{$0.name < $1.name}
+        isSearching = (filteredProfs.count == 0) ? false: true
         searchCollectionView.reloadData()
     }
 }
@@ -111,9 +120,9 @@ extension SearchViewController: UISearchBarDelegate{
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearching {
-            return filteredUsers.count
+            return filteredProfs.count
         } else if (searchBar.text == "")  {
-             return users.count
+             return profs.count
         }
         else {
             return 0
@@ -121,16 +130,20 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: userCellReuseIdentifier, for: indexPath) as! SearchCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profCellReuseIdentifier, for: indexPath) as! SearchCollectionViewCell
         if isSearching {
-            let user = filteredUsers[indexPath.item]
-            cell.configure(for: user)
+            let prof = filteredProfs[indexPath.item]
+            cell.configure(for: prof)
             return cell
         } else {
-            let user = users[indexPath.item]
-            cell.configure(for: user)
+            let prof = profs[indexPath.item]
+            cell.configure(for: prof)
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushProfDetailsViewController()
     }
 }
 
