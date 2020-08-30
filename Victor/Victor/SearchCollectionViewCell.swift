@@ -37,8 +37,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
-        imageView.backgroundColor = .blue
-        imageView.image = UIImage(named: "man")
         contentView.addSubview(imageView)
         
         setupConstraints()

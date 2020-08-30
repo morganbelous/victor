@@ -9,10 +9,15 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    var followingCollectionView: UICollectionView!
+    let followingCellReuseIdentifier = "profCellReuseIdentifier"
+    
+    var followings: [Professional] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
     }
 }
