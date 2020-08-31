@@ -30,11 +30,6 @@ class ProfDetailsViewController: UIViewController {
     var videosNumberLabel: UILabel!
     var videosLabel: UILabel!
     
-    let aboveImagePadding: Int = 30
-    let smallPadding: Int = 5
-    let mediumPadding: Int = 10
-    let largePadding: Int = 20
-    
     init(profName: String, profUsername: String, profBio: String, profProfileImageName: String) {
         self.profName = profName
         self.profUsername = profUsername
@@ -49,7 +44,7 @@ class ProfDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 133/255, green: 176/255, blue: 183/255, alpha: 1.0)
+        view.backgroundColor = Constants.lightBlue
     
         imageView = UIImageView()
         imageView.image = UIImage(named: profProfileImageName)
@@ -57,7 +52,7 @@ class ProfDetailsViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 20
         imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor(red: 70/255, green: 94/255, blue: 95/255, alpha: 1.0).cgColor
+        imageView.layer.borderColor = Constants.darkBlue.cgColor
         view.addSubview(imageView)
         
         nameLabel = UILabel()
@@ -74,7 +69,7 @@ class ProfDetailsViewController: UIViewController {
         view.addSubview(followButton)
         
         blueView = UIView()
-        blueView.backgroundColor = UIColor(red: 70/255, green: 94/255, blue: 95/255, alpha: 1.0)
+        blueView.backgroundColor = Constants.darkBlue
         blueView.layer.cornerRadius = 20
         view.addSubview(blueView)
         
@@ -82,7 +77,7 @@ class ProfDetailsViewController: UIViewController {
         followersButton.setImage(UIImage(named: "smile"), for: .normal)
         followersButton.layer.cornerRadius = 10
         followersButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        followersButton.backgroundColor = UIColor(red: 176/255, green: 186/255, blue: 188/255, alpha: 1.0)
+        followersButton.backgroundColor = Constants.lightGray
         view.addSubview(followersButton)
         
         followersNumberLabel = UILabel()
@@ -109,7 +104,7 @@ class ProfDetailsViewController: UIViewController {
         videosButton.setImage(UIImage(named: "play"), for: .normal)
         videosButton.layer.cornerRadius = 10
         videosButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        videosButton.backgroundColor = UIColor(red: 176/255, green: 186/255, blue: 188/255, alpha: 1.0)
+        videosButton.backgroundColor = Constants.lightGray
         view.addSubview(videosButton)
         
         setupConstraints()
@@ -119,19 +114,19 @@ class ProfDetailsViewController: UIViewController {
         
         imageView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(aboveImagePadding)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.aboveImagePadding)
             make.width.equalTo(view.frame.width * 0.2)
             make.height.equalTo(imageView.snp.width)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(smallPadding)
+            make.top.equalTo(imageView.snp.bottom).offset(Constants.smallPadding)
             make.centerX.equalTo(view)
         }
         
         followButton.snp.makeConstraints { make in
             make.centerX.equalTo(view)
-            make.top.equalTo(nameLabel.snp.bottom).offset(smallPadding)
+            make.top.equalTo(nameLabel.snp.bottom).offset(Constants.smallPadding)
             make.width.equalTo(200)
         }
         
@@ -142,35 +137,35 @@ class ProfDetailsViewController: UIViewController {
         }
         
         followersButton.snp.makeConstraints { make in
-            make.right.equalTo(followersLabel.snp.left).offset(-mediumPadding)
+            make.right.equalTo(followersLabel.snp.left).offset(-Constants.mediumPadding)
             make.centerY.equalTo(blueView.snp.centerY)
             make.width.height.equalTo(50)
         }
         
         followersNumberLabel.snp.makeConstraints { make in
             make.left.equalTo(followersLabel)
-            make.centerY.equalTo(followersButton).offset(-smallPadding)
+            make.centerY.equalTo(followersButton).offset(-Constants.smallPadding)
         }
         
         followersLabel.snp.makeConstraints { make in
-            make.right.equalTo(view.snp.centerX).offset(-largePadding)
-            make.centerY.equalTo(followersButton).offset(mediumPadding)
+            make.right.equalTo(view.snp.centerX).offset(-Constants.largePadding)
+            make.centerY.equalTo(followersButton).offset(Constants.mediumPadding)
         }
         
         videosButton.snp.makeConstraints { make in
-            make.left.equalTo(view.snp.centerX).offset(largePadding)
+            make.left.equalTo(view.snp.centerX).offset(Constants.largePadding)
             make.centerY.equalTo(blueView.snp.centerY)
             make.width.height.equalTo(50)
         }
         
         videosNumberLabel.snp.makeConstraints { make in
-            make.left.equalTo(videosButton.snp.right).offset(mediumPadding)
-            make.centerY.equalTo(videosButton).offset(-smallPadding)
+            make.left.equalTo(videosButton.snp.right).offset(Constants.mediumPadding)
+            make.centerY.equalTo(videosButton).offset(-Constants.smallPadding)
         }
         
         videosLabel.snp.makeConstraints { make in
             make.left.equalTo(videosNumberLabel)
-            make.centerY.equalTo(videosButton).offset(mediumPadding)
+            make.centerY.equalTo(videosButton).offset(Constants.mediumPadding)
         }
     }
     
