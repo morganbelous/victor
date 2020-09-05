@@ -13,6 +13,7 @@ struct Professional {
     var username: String
     var bio: String
     var profileImageName: String
+    var heroImageName: String
 //    var email: String
 //    var password: String
 //    var birthday: String

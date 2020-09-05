@@ -18,6 +18,17 @@ class ProfileViewController: UIViewController {
     var nameLabel: UILabel!
     
     var blueView: UIView!
+    var whiteView: UIView!
+    
+    var followingButton: UIButton!
+    var followingNumberLabel: UILabel!
+    var followingLabel: UILabel!
+    var likesButton: UIButton!
+    var likesNumberLabel: UILabel!
+    var likesLabel: UILabel!
+    
+    var followingTitle: UILabel!
+    var titlePadding: Int = 15
     
     var followingCollectionView: UICollectionView!
     let followingCellReuseIdentifier = "profCellReuseIdentifier"
@@ -29,9 +40,9 @@ class ProfileViewController: UIViewController {
 
         view.backgroundColor = Constants.lightBlue
         
-        let jack = Professional(name: "Jack", username: "jack123", bio: "I'm a soccer player", profileImageName: "man")
-        let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman")
-        let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2")
+        let jack = Professional(name: "Jack", username: "jack123", bio: "I'm a soccer player", profileImageName: "man", heroImageName: "soccer")
+        let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman", heroImageName: "volleyball")
+        let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2", heroImageName: "tennis")
         
         followings = [jack, morgan, sam, jack, morgan, sam]
         
@@ -54,6 +65,49 @@ class ProfileViewController: UIViewController {
         blueView.layer.cornerRadius = 20
         view.addSubview(blueView)
         
+        followingButton = UIButton()
+        followingButton.setImage(UIImage(named: "smile"), for: .normal)
+        followingButton.layer.cornerRadius = 10
+        followingButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        followingButton.backgroundColor = Constants.lightGray
+        view.addSubview(followingButton)
+        
+        followingNumberLabel = UILabel()
+        followingNumberLabel.text = "32"
+        followingNumberLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        view.addSubview(followingNumberLabel)
+        
+        followingLabel = UILabel()
+        followingLabel.text = "Following"
+        followingLabel.font = UIFont.systemFont(ofSize: 12)
+        view.addSubview(followingLabel)
+        
+        likesNumberLabel = UILabel()
+        likesNumberLabel.text = "21"
+        likesNumberLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        view.addSubview(likesNumberLabel)
+        
+        likesLabel = UILabel()
+        likesLabel.text = "Likes"
+        likesLabel.font = UIFont.systemFont(ofSize: 12)
+        view.addSubview(likesLabel)
+        
+        likesButton = UIButton()
+        likesButton.setImage(UIImage(named: "heart"), for: .normal)
+        likesButton.layer.cornerRadius = 10
+        likesButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        likesButton.backgroundColor = Constants.lightGray
+        view.addSubview(likesButton)
+        
+        whiteView = UIView()
+        whiteView.backgroundColor = .white
+        view.addSubview(whiteView)
+        
+        followingTitle = UILabel()
+        followingTitle.text = "Following"
+        followingTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        view.addSubview(followingTitle)
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
@@ -90,10 +144,60 @@ class ProfileViewController: UIViewController {
             make.top.equalTo(nameLabel.snp.bottom).offset(45)
         }
         
+        followingButton.snp.makeConstraints { make in
+            make.right.equalTo(followingLabel.snp.left).offset(-Constants.mediumPadding)
+            make.centerY.equalTo(blueView.snp.centerY)
+            make.width.height.equalTo(50)
+        }
+        
+        followingNumberLabel.snp.makeConstraints { make in
+            make.left.equalTo(followingLabel)
+            make.centerY.equalTo(followingButton).offset(-Constants.smallPadding)
+        }
+        
+        followingLabel.snp.makeConstraints { make in
+            make.right.equalTo(view.snp.centerX).offset(-Constants.largePadding)
+            make.centerY.equalTo(followingButton).offset(Constants.mediumPadding)
+        }
+        
+        whiteView.snp.makeConstraints { make in
+            make.left.right.bottom.equalTo(view)
+            make.top.equalTo(blueView.snp.bottom)
+        }
+        
+        followingTitle.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(titlePadding)
+            make.top.equalTo(whiteView.snp.top).offset(titlePadding)
+        }
+        
         followingCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(blueView.snp.bottom).offset(20)
+            make.top.equalTo(whiteView.snp.top).offset(35)
             make.left.right.equalTo(view)
             make.height.equalTo(120)
+        }
+        
+        likesButton.snp.makeConstraints { make in
+            make.left.equalTo(view.snp.centerX).offset(Constants.largePadding)
+            make.centerY.equalTo(blueView.snp.centerY)
+            make.width.height.equalTo(50)
+        }
+        
+        likesNumberLabel.snp.makeConstraints { make in
+            make.left.equalTo(likesButton.snp.right).offset(Constants.mediumPadding)
+            make.centerY.equalTo(likesButton).offset(-Constants.smallPadding)
+        }
+        
+        likesLabel.snp.makeConstraints { make in
+            make.left.equalTo(likesNumberLabel)
+            make.centerY.equalTo(likesButton).offset(Constants.mediumPadding)
+        }
+    }
+    
+    @objc func pushProfDetailsViewController(){
+        if let indexPath = self.followingCollectionView.indexPathsForSelectedItems?.first{
+            let prof = followings[indexPath.row]
+            let detailsViewController = ProfDetailsViewController(profName: prof.name, profUsername: prof.username, profBio: prof.bio, profProfileImageName: prof.profileImageName)
+            navigationController?.pushViewController(detailsViewController, animated: true)
         }
     }
 }
@@ -109,6 +213,10 @@ extension ProfileViewController: UICollectionViewDataSource {
         cell.configure(for: prof)
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushProfDetailsViewController()
     }
 }
 

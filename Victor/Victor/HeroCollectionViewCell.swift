@@ -22,7 +22,6 @@ class HeroCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 20
         
         heroImageView = UIImageView()
-        heroImageView.image = UIImage(named: "man")
         heroImageView.contentMode = .scaleAspectFill
         heroImageView.clipsToBounds = true
         contentView.addSubview(heroImageView)
@@ -30,6 +29,7 @@ class HeroCollectionViewCell: UICollectionViewCell {
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        nameLabel.textColor = .white
         contentView.addSubview(nameLabel)
         
         profileImageView = UIImageView()
@@ -66,7 +66,8 @@ class HeroCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(for prof: Professional){
-        nameLabel.text = prof.nam
+        nameLabel.text = prof.name
         profileImageView.image = UIImage(named: prof.profileImageName)
+        heroImageView.image = UIImage(named: prof.heroImageName)
     } 
 }

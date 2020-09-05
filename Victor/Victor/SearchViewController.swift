@@ -29,9 +29,9 @@ class SearchViewController: UIViewController {
 
         view.backgroundColor = Constants.lightBlue
     
-        let jack = Professional(name: "Jack", username: "jack123", bio: "I'm a soccer player", profileImageName: "man")
-        let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman")
-        let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2")
+        let jack = Professional(name: "Jack", username: "jack123", bio: "I'm a soccer player", profileImageName: "man", heroImageName: "soccer")
+        let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman", heroImageName: "volleyball")
+        let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2", heroImageName: "tennis")
         
         profs = [jack, morgan, sam, jack, morgan, sam]
         filteredProfs = profs

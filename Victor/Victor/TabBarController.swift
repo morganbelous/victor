@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TabBarController: UITabBarController, UITabBarControllerDelegate {
+class TabBarController: UITabBarController {
     
     var homeTabNavigationController : UINavigationController!
     var searchTabNavigationController : UINavigationController!
@@ -29,7 +29,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.layer.shadowRadius = 5
         tabBar.layer.shadowOpacity = 0.8
         tabBar.layer.masksToBounds = false
-        
         
         setupViewControllers()
     }
@@ -64,22 +63,24 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         uploadTabNavigationController.tabBarItem = item2
         notificationsTabNavigationController.tabBarItem = item3
         profileTabNavigationController.tabBarItem = item4
-        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.firstIndex(of: viewController)
         
         if index == 2 {
-         let vc =  UploadViewController()
-         vc.modalPresentationStyle = .overFullScreen
-         self.present(vc, animated: true, completion: nil)
-         return false
+            let vc =  UploadViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true, completion: nil)
+            return false
         }
       return true
     }
-    
+}
 
-    
-
+extension UITabBarController: UITabBarControllerDelegate {
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let profileVC = tabBarController.viewControllers?[4] as! UINavigationController
+        profileVC.popViewController(animated: false)
+    }
 }
