@@ -19,13 +19,16 @@ class HeroCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.cornerRadius = 20
+        // round corners
+        self.contentView.layer.cornerRadius = 12.0
+        self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
         
         heroImageView = UIImageView()
         heroImageView.contentMode = .scaleAspectFill
         heroImageView.clipsToBounds = true
         contentView.addSubview(heroImageView)
-        
         
         nameLabel = UILabel()
         nameLabel.font = UIFont.boldSystemFont(ofSize: 14)

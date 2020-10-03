@@ -17,4 +17,5 @@ struct User {
 //    var password: String
 //    var birthday: String
 //    var following: [User]
+//    var likedVideos: [String]
 }

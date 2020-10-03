@@ -17,7 +17,6 @@ struct Professional {
 //    var email: String
 //    var password: String
 //    var birthday: String
-//    var following: [User] ??
 //    var followers: [User] ??
 //    var posts: [String]
 }

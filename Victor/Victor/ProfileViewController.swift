@@ -28,12 +28,19 @@ class ProfileViewController: UIViewController {
     var likesLabel: UILabel!
     
     var followingTitle: UILabel!
-    var titlePadding: Int = 15
+    var bookmarksTitle: UILabel!
+    let titlePadding: Int = 15
     
     var followingCollectionView: UICollectionView!
     let followingCellReuseIdentifier = "profCellReuseIdentifier"
     
+    var bookmarksCollectionView: UICollectionView!
+    let bookmarkCellReuseIdentifier = "bookmarkCellReuseIdentifier"
+    
+    let collectionViewHeight: Int = 120
+
     var followings: [Professional] = []
+    var bookmarks: [Video] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +51,12 @@ class ProfileViewController: UIViewController {
         let morgan = Professional(name: "Morgan", username: "morgan326", bio: "I'm a volleyball player", profileImageName: "woman", heroImageName: "volleyball")
         let sam = Professional(name: "Sam", username: "sam125", bio: "I'm a tennis player", profileImageName: "woman2", heroImageName: "tennis")
         
+        let soccerVideo = Video(name: "soccervideo", caption: "video of jack playing soccer", likes: 10, userWhoPosted: "jack")
+        let vbVideo = Video(name: "vbvideo", caption: "video of morgan playing volleyball", likes: 5, userWhoPosted: "morgan")
+        let tennisVideo = Video(name: "tennisvideo", caption: "video of sam playing tennis", likes: 14, userWhoPosted: "sam")
+        
         followings = [jack, morgan, sam, jack, morgan, sam]
+        bookmarks = [soccerVideo, vbVideo, tennisVideo, soccerVideo, vbVideo, tennisVideo]
         
         imageView = UIImageView()
         imageView.image = UIImage(named: "woman")
@@ -92,6 +104,11 @@ class ProfileViewController: UIViewController {
         likesLabel.font = UIFont.systemFont(ofSize: 12)
         view.addSubview(likesLabel)
         
+        likesLabel = UILabel()
+        likesLabel.text = "Likes"
+        likesLabel.font = UIFont.systemFont(ofSize: 12)
+        view.addSubview(likesLabel)
+    
         likesButton = UIButton()
         likesButton.setImage(UIImage(named: "heart"), for: .normal)
         likesButton.layer.cornerRadius = 10
@@ -103,15 +120,15 @@ class ProfileViewController: UIViewController {
         whiteView.backgroundColor = .white
         view.addSubview(whiteView)
         
-        followingTitle = UILabel()
-        followingTitle.text = "Following"
-        followingTitle.font = UIFont.boldSystemFont(ofSize: 16)
-        view.addSubview(followingTitle)
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
+        
+        followingTitle = UILabel()
+        followingTitle.text = "Following"
+        followingTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        view.addSubview(followingTitle)
         
         followingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         followingCollectionView.dataSource = self
@@ -120,6 +137,20 @@ class ProfileViewController: UIViewController {
         followingCollectionView.backgroundColor = .white
         followingCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         view.addSubview(followingCollectionView)
+        
+        bookmarksTitle = UILabel()
+        bookmarksTitle.text = "Bookmarks"
+        bookmarksTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        view.addSubview(bookmarksTitle)
+        
+        bookmarksCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        bookmarksCollectionView.dataSource = self
+        bookmarksCollectionView.delegate = self
+        // FIX CELL TYPE HERE
+        bookmarksCollectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: bookmarkCellReuseIdentifier)
+        bookmarksCollectionView.backgroundColor = .white
+        bookmarksCollectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        view.addSubview(bookmarksCollectionView)
         
         setupConstraints()
     }
@@ -173,7 +204,18 @@ class ProfileViewController: UIViewController {
         followingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(whiteView.snp.top).offset(35)
             make.left.right.equalTo(view)
-            make.height.equalTo(120)
+            make.height.equalTo(collectionViewHeight)
+        }
+        
+        bookmarksTitle.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(titlePadding)
+            make.top.equalTo(followingCollectionView.snp.bottom).offset(10)
+        }
+        
+        bookmarksCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(followingCollectionView.snp.bottom).offset(35)
+            make.left.right.equalTo(view)
+            make.height.equalTo(collectionViewHeight)
         }
         
         likesButton.snp.makeConstraints { make in
@@ -204,19 +246,33 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return followings.count
+        if collectionView == self.followingCollectionView {
+            return followings.count
+        } else {
+            return bookmarks.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = followingCollectionView.dequeueReusableCell(withReuseIdentifier: followingCellReuseIdentifier, for: indexPath) as! HeroCollectionViewCell
-        let prof = followings[indexPath.item]
-        cell.configure(for: prof)
-        return cell
-        
+        if collectionView == self.followingCollectionView {
+            let profCell = followingCollectionView.dequeueReusableCell(withReuseIdentifier: followingCellReuseIdentifier, for: indexPath) as! HeroCollectionViewCell
+            let prof = followings[indexPath.item]
+            profCell.configure(for: prof)
+            return profCell
+        } else {
+            let videoCell = bookmarksCollectionView.dequeueReusableCell(withReuseIdentifier: bookmarkCellReuseIdentifier, for: indexPath) as! VideoCollectionViewCell
+            let bookmark = bookmarks[indexPath.item]
+            //videoCell.configure(for: bookmark)
+            return videoCell
+        }  
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        pushProfDetailsViewController()
+        if collectionView == self.followingCollectionView {
+            pushProfDetailsViewController()
+        } else {
+            // push to video here
+        }
     }
 }
 

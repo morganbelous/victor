@@ -25,6 +25,8 @@
 		63B01C8124FDB2A20008666D /* HeroCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B01C8024FDB2A20008666D /* HeroCollectionViewCell.swift */; };
 		63B938BC24EB7E59009432E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BB24EB7E59009432E7 /* HomeViewController.swift */; };
 		63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */; };
+		63C972FA25053BDE00A659C4 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C972F925053BDE00A659C4 /* Video.swift */; };
+		63C972FC250541CE00A659C4 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C972FB250541CE00A659C4 /* VideoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		63B01C8024FDB2A20008666D /* HeroCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroCollectionViewCell.swift; sourceTree = "<group>"; };
 		63B938BB24EB7E59009432E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		63C972F925053BDE00A659C4 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		63C972FB250541CE00A659C4 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D1EE43AAB66D8ED5BABD030 /* Pods-Victor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Victor.release.xcconfig"; path = "Target Support Files/Pods-Victor/Pods-Victor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,15 +101,11 @@
 				63054F6924EB79BE003533AB /* SceneDelegate.swift */,
 				6332673624EC78DC000FBCB8 /* TabBarController.swift */,
 				63B938BB24EB7E59009432E7 /* HomeViewController.swift */,
-				6332673224EC42A9000FBCB8 /* SearchViewController.swift */,
 				6332673824EC7C4A000FBCB8 /* UploadViewController.swift */,
 				6332673424EC465A000FBCB8 /* NotificationsViewController.swift */,
-				63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */,
-				63060A3324F8442D00647716 /* ProfDetailsViewController.swift */,
-				63240E4224EDA506002F78E7 /* SearchCollectionViewCell.swift */,
-				63B01C8024FDB2A20008666D /* HeroCollectionViewCell.swift */,
-				63240E4024ED9D4B002F78E7 /* User.swift */,
-				6304DD9724F8463C00D4F1D5 /* Professional.swift */,
+				63C972FF2505431500A659C4 /* Profile */,
+				63C972FD250542E400A659C4 /* Search */,
+				63C973022505436700A659C4 /* Models */,
 				636B2B6F24FC2D1F00DB2788 /* Constants.swift */,
 				63054F6D24EB79C1003533AB /* Assets.xcassets */,
 				63054F7224EB79C1003533AB /* LaunchScreen.storyboard */,
@@ -121,6 +121,36 @@
 				63054F7024EB79C1003533AB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63C972FD250542E400A659C4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				63240E4224EDA506002F78E7 /* SearchCollectionViewCell.swift */,
+				6332673224EC42A9000FBCB8 /* SearchViewController.swift */,
+				63060A3324F8442D00647716 /* ProfDetailsViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		63C972FF2505431500A659C4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				63B938BD24EB7FE4009432E7 /* ProfileViewController.swift */,
+				63B01C8024FDB2A20008666D /* HeroCollectionViewCell.swift */,
+				63C972FB250541CE00A659C4 /* VideoCollectionViewCell.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		63C973022505436700A659C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63240E4024ED9D4B002F78E7 /* User.swift */,
+				6304DD9724F8463C00D4F1D5 /* Professional.swift */,
+				63C972F925053BDE00A659C4 /* Video.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C0A040F7F0CF38CC5F54DE68 /* Pods */ = {
@@ -253,10 +283,12 @@
 				63054F6824EB79BE003533AB /* AppDelegate.swift in Sources */,
 				63054F6A24EB79BE003533AB /* SceneDelegate.swift in Sources */,
 				63060A3424F8442D00647716 /* ProfDetailsViewController.swift in Sources */,
+				63C972FC250541CE00A659C4 /* VideoCollectionViewCell.swift in Sources */,
 				63240E4324EDA506002F78E7 /* SearchCollectionViewCell.swift in Sources */,
 				636B2B7024FC2D1F00DB2788 /* Constants.swift in Sources */,
 				63B01C8124FDB2A20008666D /* HeroCollectionViewCell.swift in Sources */,
 				6332673524EC465A000FBCB8 /* NotificationsViewController.swift in Sources */,
+				63C972FA25053BDE00A659C4 /* Video.swift in Sources */,
 				63240E4124ED9D4B002F78E7 /* User.swift in Sources */,
 				6332673724EC78DC000FBCB8 /* TabBarController.swift in Sources */,
 				63B938BE24EB7FE4009432E7 /* ProfileViewController.swift in Sources */,

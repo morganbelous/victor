@@ -53,10 +53,6 @@ class SearchViewController: UIViewController {
         searchCollectionView.delegate = self
         searchCollectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: profCellReuseIdentifier)
         searchCollectionView.backgroundColor = .white
-//        searchCollectionView.layer.cornerRadius = 50.0
-//        searchCollectionView.layer.borderWidth = 1.0
-//        searchCollectionView.layer.borderColor = UIColor.clear.cgColor
-//        searchCollectionView.layer.masksToBounds = true
         view.addSubview(searchCollectionView)
         
         setupConstraints()
@@ -77,7 +73,6 @@ class SearchViewController: UIViewController {
     }
     
     @objc func pushProfDetailsViewController(){
-        // MAKE SURE THIS WORKS WITH SEARCHING??
         if let indexPath = self.searchCollectionView.indexPathsForSelectedItems?.first{
             let prof = isSearching ? filteredProfs[indexPath.row] : profs[indexPath.row]
             let detailsViewController = ProfDetailsViewController(profName: prof.name, profUsername: prof.username, profBio: prof.bio, profProfileImageName: prof.profileImageName)
